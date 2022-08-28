@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es" xmlns="https://www.thymeleaf.org"
+ >
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.0-beta1 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"  integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light shadow-sm">
+          <div class="container">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                </ul>
+                <form class="d-flex my-2 my-lg-0">
+                    <input class="form-control me-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+      </div>
+    </nav>
+   <div class="container">
+   <h1 th:if="${marca.id == null}">AGREGAR MARCA</h1>
+   <h1 th:unless="${marca.id == null}">EDITAR MARCA</h1>
+   <form class="shadow-lg p-4" th:action="@{/marcas/guardar}" th:object="${marca}" method="post">
+       <div class="mb-3">
+         <label for="" class="form-label">Name of marc:</label>
+         <input type="text"
+           class="form-control" th:field="*{nombre}" id="" aria-describedby="helpId" placeholder="">
+       </div>
+       <div class="mb-3">
+         <label for="" class="form-label">Selecciona una o más categorias</label>
+         <select class="form-control" th:field="*{categoria}" id="">
+           <option value="">Select</option>
+           <option th:each="categoria : ${categorias}" th:text="${categoria.nombre}" th:value="${categoria.id}"></option>
+         
+         </select>
+       </div>
+       <button type="submit" class="btn btn-primary">Register category</button>
+   </form>
+   </div>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+  </body>
+</html>
